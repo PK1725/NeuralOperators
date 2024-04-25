@@ -257,6 +257,7 @@ def prepare_data(u_0_train,u_t_train,device,t_max,L):
         out_normalizer=None,
         positional_encoding=pos_encoding
     )
+    data_processor = data_processor.to(device)
     return train_loader,data_processor
 
 def generate_test_tensor(n_simulations,test_resolutions,device,L,n,t_max,dt,nu):
