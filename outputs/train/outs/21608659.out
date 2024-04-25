@@ -1,0 +1,178 @@
+Thu Apr 25 11:40:27 2024       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 550.54.15              Driver Version: 550.54.15      CUDA Version: 12.4     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla V100-PCIE-32GB           On  |   00000000:58:00.0 Off |                    0 |
+| N/A   33C    P0             25W /  250W |       0MiB /  32768MiB |      0%   E. Process |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Loaded module: cuda/11.6
+/appl/cuda/11.6.0/samples/bin/x86_64/linux/release/deviceQuery Starting...
+
+ CUDA Device Query (Runtime API) version (CUDART static linking)
+
+Detected 1 CUDA Capable device(s)
+
+Device 0: "Tesla V100-PCIE-32GB"
+  CUDA Driver Version / Runtime Version          12.4 / 11.6
+  CUDA Capability Major/Minor version number:    7.0
+  Total amount of global memory:                 32494 MBytes (34072559616 bytes)
+  (080) Multiprocessors, (064) CUDA Cores/MP:    5120 CUDA Cores
+  GPU Max Clock rate:                            1380 MHz (1.38 GHz)
+  Memory Clock rate:                             877 Mhz
+  Memory Bus Width:                              4096-bit
+  L2 Cache Size:                                 6291456 bytes
+  Maximum Texture Dimension Size (x,y,z)         1D=(131072), 2D=(131072, 65536), 3D=(16384, 16384, 16384)
+  Maximum Layered 1D Texture Size, (num) layers  1D=(32768), 2048 layers
+  Maximum Layered 2D Texture Size, (num) layers  2D=(32768, 32768), 2048 layers
+  Total amount of constant memory:               65536 bytes
+  Total amount of shared memory per block:       49152 bytes
+  Total shared memory per multiprocessor:        98304 bytes
+  Total number of registers available per block: 65536
+  Warp size:                                     32
+  Maximum number of threads per multiprocessor:  2048
+  Maximum number of threads per block:           1024
+  Max dimension size of a thread block (x,y,z): (1024, 1024, 64)
+  Max dimension size of a grid size    (x,y,z): (2147483647, 65535, 65535)
+  Maximum memory pitch:                          2147483647 bytes
+  Texture alignment:                             512 bytes
+  Concurrent copy and kernel execution:          Yes with 7 copy engine(s)
+  Run time limit on kernels:                     No
+  Integrated GPU sharing Host Memory:            No
+  Support host page-locked memory mapping:       Yes
+  Alignment requirement for Surfaces:            Yes
+  Device has ECC support:                        Enabled
+  Device supports Unified Addressing (UVA):      Yes
+  Device supports Managed Memory:                Yes
+  Device supports Compute Preemption:            Yes
+  Supports Cooperative Kernel Launch:            Yes
+  Supports MultiDevice Co-op Kernel Launch:      Yes
+  Device PCI Domain ID / Bus ID / location ID:   0 / 88 / 0
+  Compute Mode:
+     < Exclusive Process (many threads in one process is able to use ::cudaSetDevice() with this device) >
+
+deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 12.4, CUDA Runtime Version = 11.6, NumDevs = 1
+Result = PASS
+Loaded dependency [python3/3.10.13]: gcc/11.4.0-binutils-2.40
+Loaded dependency [python3/3.10.13]: sqlite3/3.44.2
+Loaded module: python3/3.10.13
+
+Loading python3/3.10.13
+  Loading requirement: gcc/11.4.0-binutils-2.40 sqlite3/3.44.2
+Loaded data shapes:
+(1000, 50, 100) (1000, 50, 100) (100,)
+40000000
+Device: cuda
+(available memory,total memory):  (33747566592, 34072559616)
+Simulations:   0%|          | 0/5 [00:00<?, ?it/s]Simulations:  20%|██        | 1/5 [00:00<00:02,  1.75it/s]Simulations:  40%|████      | 2/5 [00:00<00:01,  2.49it/s]Simulations:  60%|██████    | 3/5 [00:01<00:00,  2.87it/s]Simulations:  80%|████████  | 4/5 [00:01<00:00,  3.10it/s]Simulations: 100%|██████████| 5/5 [00:01<00:00,  3.24it/s]Simulations: 100%|██████████| 5/5 [00:01<00:00,  2.93it/s]
+Simulations:   0%|          | 0/5 [00:00<?, ?it/s]Simulations:  20%|██        | 1/5 [00:00<00:02,  1.65it/s]Simulations:  40%|████      | 2/5 [00:00<00:01,  2.40it/s]Simulations:  60%|██████    | 3/5 [00:01<00:00,  2.81it/s]Simulations:  80%|████████  | 4/5 [00:01<00:00,  3.06it/s]Simulations: 100%|██████████| 5/5 [00:01<00:00,  3.22it/s]Simulations: 100%|██████████| 5/5 [00:01<00:00,  2.88it/s]
+Simulations:   0%|          | 0/5 [00:00<?, ?it/s]Simulations:  20%|██        | 1/5 [00:00<00:02,  1.65it/s]Simulations:  40%|████      | 2/5 [00:00<00:01,  2.40it/s]Simulations:  60%|██████    | 3/5 [00:01<00:00,  2.81it/s]Simulations:  80%|████████  | 4/5 [00:01<00:00,  3.06it/s]Simulations: 100%|██████████| 5/5 [00:01<00:00,  3.21it/s]Simulations: 100%|██████████| 5/5 [00:01<00:00,  2.87it/s]
+Simulations:   0%|          | 0/5 [00:00<?, ?it/s]Simulations:  20%|██        | 1/5 [00:00<00:02,  1.65it/s]Simulations:  40%|████      | 2/5 [00:00<00:01,  2.40it/s]Simulations:  60%|██████    | 3/5 [00:01<00:00,  2.81it/s]Simulations:  80%|████████  | 4/5 [00:01<00:00,  3.05it/s]Simulations: 100%|██████████| 5/5 [00:01<00:00,  3.21it/s]Simulations: 100%|██████████| 5/5 [00:01<00:00,  2.87it/s]
+Generated test data
+
+Our model has 523257 parameters.
+using standard method to load data to device.
+using standard method to compute loss.
+self.override_load_to_device=False
+self.overrides_loss=False
+Training on 1000 samples
+Testing on [5, 5, 5, 5] samples         on resolutions ['80x50', '25x25', '50x50', '100x100'].
+Traceback (most recent call last):
+  File "/zhome/29/d/156177/data_driven_methods/project/train_script.py", line 76, in <module>
+    trainer.train(train_loader=train_loader,
+  File "/zhome/29/d/156177/DDM/lib/python3.10/site-packages/neuralop/training/trainer.py", line 139, in train
+    for idx, sample in enumerate(train_loader):
+  File "/zhome/29/d/156177/DDM/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 628, in __next__
+    data = self._next_data()
+  File "/zhome/29/d/156177/DDM/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 673, in _next_data
+    data = _utils.pin_memory.pin_memory(data, self._pin_memory_device)
+  File "/zhome/29/d/156177/DDM/lib/python3.10/site-packages/torch/utils/data/_utils/pin_memory.py", line 58, in pin_memory
+    return type(data)({k: pin_memory(sample, device) for k, sample in data.items()})  # type: ignore[call-arg]
+  File "/zhome/29/d/156177/DDM/lib/python3.10/site-packages/torch/utils/data/_utils/pin_memory.py", line 58, in <dictcomp>
+    return type(data)({k: pin_memory(sample, device) for k, sample in data.items()})  # type: ignore[call-arg]
+  File "/zhome/29/d/156177/DDM/lib/python3.10/site-packages/torch/utils/data/_utils/pin_memory.py", line 53, in pin_memory
+    return data.pin_memory(device)
+RuntimeError: cannot pin 'torch.cuda.FloatTensor' only dense CPU tensors can be pinned
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 21608659: <ex6_2> in cluster <dcc> Exited
+
+Job <ex6_2> was submitted from host <n-62-20-1> by user <s204230> in cluster <dcc> at Thu Apr 25 11:05:18 2024
+Job was executed on host(s) <4*n-62-20-13>, in queue <gpuv100>, as user <s204230> in cluster <dcc> at Thu Apr 25 11:40:17 2024
+</zhome/29/d/156177> was used as the home directory.
+</zhome/29/d/156177/data_driven_methods/project> was used as the working directory.
+Started at Thu Apr 25 11:40:17 2024
+Terminated at Thu Apr 25 11:41:05 2024
+Results reported at Thu Apr 25 11:41:05 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+### General options
+### –- specify queue --
+#BSUB -q gpuv100
+### -- set the job Name --
+#BSUB -J ex6_2
+### -- ask for number of cores (default: 1) --
+#BSUB -n 4
+### -- Select the resources: 1 gpu in exclusive process mode --
+#BSUB -gpu "num=1:mode=exclusive_process"
+### -- set walltime limit: hh:mm --  maximum 24 hours for GPU-queues right now
+#BSUB -W 1:00
+# request 5GB of system-memory
+#BSUB -R "rusage[mem=8GB]"
+### -- set the email address --
+# please uncomment the following line and put in your e-mail address,
+# if you want to receive e-mail notifications on a non-default address
+
+### -- Specify the output and error file. %J is the job-id --
+### -- -o and -e mean append, -oo and -eo mean overwrite --
+#BSUB -o outputs/train/outs/ output%J.out
+#BSUB -e outputs/train/errs/ errors%J.err
+# -- end of LSF options --
+
+nvidia-smi
+# Load the cuda module
+module load cuda/11.6
+
+/appl/cuda/11.6.0/samples/bin/x86_64/linux/release/deviceQuery
+
+# Initialize Python environment
+source $HOME/DDM/bin/activate
+
+# Run Python script
+python train_script.py
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   11.63 sec.
+    Max Memory :                                 513 MB
+    Average Memory :                             513.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               32255.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                7
+    Run time :                                   47 sec.
+    Turnaround time :                            2147 sec.
+
+The output (if any) is above this job summary.
+

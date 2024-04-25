@@ -1,0 +1,65 @@
+Loaded module: cuda/11.8
+Simulations:   0%|          | 0/100 [00:00<?, ?it/s]Simulations:   1%|          | 1/100 [00:00<01:06,  1.50it/s]Simulations:   2%|▏         | 2/100 [00:01<00:46,  2.12it/s]Simulations:   3%|▎         | 3/100 [00:01<00:40,  2.41it/s]Simulations:   4%|▍         | 4/100 [00:01<00:36,  2.61it/s]Simulations:   5%|▌         | 5/100 [00:02<00:34,  2.74it/s]Simulations:   6%|▌         | 6/100 [00:02<00:33,  2.82it/s]Simulations:   7%|▋         | 7/100 [00:02<00:32,  2.87it/s]Simulations:   8%|▊         | 8/100 [00:03<00:31,  2.90it/s]Simulations:   9%|▉         | 9/100 [00:03<00:31,  2.90it/s]Simulations:  10%|█         | 10/100 [00:03<00:31,  2.90it/s]Simulations:  11%|█         | 11/100 [00:04<00:30,  2.92it/s]Simulations:  12%|█▏        | 12/100 [00:04<00:29,  2.94it/s]Simulations:  13%|█▎        | 13/100 [00:04<00:29,  2.96it/s]Simulations:  14%|█▍        | 14/100 [00:05<00:28,  2.97it/s]Simulations:  15%|█▌        | 15/100 [00:05<00:28,  2.98it/s]Simulations:  16%|█▌        | 16/100 [00:05<00:28,  2.99it/s]Simulations:  17%|█▋        | 17/100 [00:06<00:27,  2.97it/s]Simulations:  18%|█▊        | 18/100 [00:06<00:27,  2.98it/s]Simulations:  19%|█▉        | 19/100 [00:06<00:27,  2.99it/s]Simulations:  20%|██        | 20/100 [00:07<00:26,  2.99it/s]Simulations:  21%|██        | 21/100 [00:07<00:26,  3.00it/s]Simulations:  22%|██▏       | 22/100 [00:07<00:26,  3.00it/s]Simulations:  23%|██▎       | 23/100 [00:08<00:25,  3.00it/s]Simulations:  24%|██▍       | 24/100 [00:08<00:25,  3.00it/s]Simulations:  25%|██▌       | 25/100 [00:08<00:24,  3.00it/s]Simulations:  26%|██▌       | 26/100 [00:09<00:24,  3.00it/s]Simulations:  27%|██▋       | 27/100 [00:09<00:24,  3.00it/s]Simulations:  28%|██▊       | 28/100 [00:09<00:24,  3.00it/s]Simulations:  29%|██▉       | 29/100 [00:10<00:23,  3.00it/s]Simulations:  30%|███       | 30/100 [00:10<00:23,  2.99it/s]Simulations:  31%|███       | 31/100 [00:10<00:23,  2.97it/s]Simulations:  32%|███▏      | 32/100 [00:11<00:22,  2.97it/s]Simulations:  33%|███▎      | 33/100 [00:11<00:22,  2.98it/s]Simulations:  34%|███▍      | 34/100 [00:11<00:22,  2.96it/s]Simulations:  35%|███▌      | 35/100 [00:12<00:21,  2.97it/s]Simulations:  36%|███▌      | 36/100 [00:12<00:21,  2.98it/s]Simulations:  37%|███▋      | 37/100 [00:12<00:21,  2.95it/s]Simulations:  38%|███▊      | 38/100 [00:13<00:20,  2.97it/s]Simulations:  39%|███▉      | 39/100 [00:13<00:20,  2.95it/s]Simulations:  40%|████      | 40/100 [00:13<00:20,  2.95it/s]Simulations:  41%|████      | 41/100 [00:14<00:19,  2.96it/s]Simulations:  42%|████▏     | 42/100 [00:14<00:19,  2.97it/s]Simulations:  43%|████▎     | 43/100 [00:14<00:19,  2.97it/s]Simulations:  44%|████▍     | 44/100 [00:15<00:18,  2.98it/s]Simulations:  45%|████▌     | 45/100 [00:15<00:18,  2.95it/s]Simulations:  46%|████▌     | 46/100 [00:15<00:18,  2.96it/s]Simulations:  47%|████▋     | 47/100 [00:16<00:17,  2.98it/s]Simulations:  48%|████▊     | 48/100 [00:16<00:17,  2.99it/s]Simulations:  49%|████▉     | 49/100 [00:16<00:17,  2.99it/s]Simulations:  50%|█████     | 50/100 [00:17<00:16,  2.99it/s]Simulations:  51%|█████     | 51/100 [00:17<00:16,  2.98it/s]Simulations:  52%|█████▏    | 52/100 [00:17<00:16,  2.98it/s]Simulations:  53%|█████▎    | 53/100 [00:18<00:15,  2.99it/s]Simulations:  54%|█████▍    | 54/100 [00:18<00:15,  2.99it/s]Simulations:  55%|█████▌    | 55/100 [00:18<00:15,  2.97it/s]Simulations:  56%|█████▌    | 56/100 [00:19<00:14,  2.98it/s]Simulations:  57%|█████▋    | 57/100 [00:19<00:14,  2.96it/s]Simulations:  58%|█████▊    | 58/100 [00:19<00:14,  2.97it/s]Simulations:  59%|█████▉    | 59/100 [00:20<00:13,  2.98it/s]Simulations:  60%|██████    | 60/100 [00:20<00:13,  2.99it/s]Simulations:  61%|██████    | 61/100 [00:20<00:13,  2.98it/s]Simulations:  62%|██████▏   | 62/100 [00:21<00:12,  2.98it/s]Simulations:  63%|██████▎   | 63/100 [00:21<00:12,  2.99it/s]Simulations:  64%|██████▍   | 64/100 [00:21<00:12,  2.99it/s]Simulations:  65%|██████▌   | 65/100 [00:22<00:11,  2.97it/s]Simulations:  66%|██████▌   | 66/100 [00:22<00:11,  2.98it/s]Simulations:  67%|██████▋   | 67/100 [00:22<00:11,  2.99it/s]Simulations:  68%|██████▊   | 68/100 [00:23<00:10,  2.99it/s]Simulations:  69%|██████▉   | 69/100 [00:23<00:10,  2.99it/s]Simulations:  70%|███████   | 70/100 [00:23<00:10,  2.98it/s]Simulations:  71%|███████   | 71/100 [00:24<00:09,  2.98it/s]Simulations:  72%|███████▏  | 72/100 [00:24<00:09,  2.98it/s]Simulations:  73%|███████▎  | 73/100 [00:24<00:09,  2.98it/s]Simulations:  74%|███████▍  | 74/100 [00:25<00:08,  2.98it/s]Simulations:  75%|███████▌  | 75/100 [00:25<00:08,  2.99it/s]Simulations:  76%|███████▌  | 76/100 [00:25<00:08,  2.99it/s]Simulations:  77%|███████▋  | 77/100 [00:26<00:07,  2.99it/s]Simulations:  78%|███████▊  | 78/100 [00:26<00:07,  3.00it/s]Simulations:  79%|███████▉  | 79/100 [00:26<00:07,  3.00it/s]Simulations:  80%|████████  | 80/100 [00:27<00:06,  2.99it/s]Simulations:  81%|████████  | 81/100 [00:27<00:06,  2.99it/s]Simulations:  82%|████████▏ | 82/100 [00:27<00:06,  3.00it/s]Simulations:  83%|████████▎ | 83/100 [00:28<00:05,  3.00it/s]Simulations:  84%|████████▍ | 84/100 [00:28<00:05,  2.98it/s]Simulations:  85%|████████▌ | 85/100 [00:28<00:05,  2.98it/s]Simulations:  86%|████████▌ | 86/100 [00:29<00:04,  2.99it/s]Simulations:  87%|████████▋ | 87/100 [00:29<00:04,  2.99it/s]Simulations:  88%|████████▊ | 88/100 [00:29<00:04,  3.00it/s]Simulations:  89%|████████▉ | 89/100 [00:30<00:03,  2.98it/s]Simulations:  90%|█████████ | 90/100 [00:30<00:03,  2.98it/s]Simulations:  91%|█████████ | 91/100 [00:30<00:03,  2.99it/s]Simulations:  92%|█████████▏| 92/100 [00:31<00:02,  2.96it/s]Simulations:  93%|█████████▎| 93/100 [00:31<00:02,  2.97it/s]Simulations:  94%|█████████▍| 94/100 [00:31<00:02,  2.98it/s]Simulations:  95%|█████████▌| 95/100 [00:32<00:01,  2.98it/s]Simulations:  96%|█████████▌| 96/100 [00:32<00:01,  2.96it/s]Simulations:  97%|█████████▋| 97/100 [00:32<00:01,  2.97it/s]Simulations:  98%|█████████▊| 98/100 [00:33<00:00,  2.98it/s]Simulations:  99%|█████████▉| 99/100 [00:33<00:00,  2.96it/s]Simulations: 100%|██████████| 100/100 [00:33<00:00,  2.93it/s]Simulations: 100%|██████████| 100/100 [00:33<00:00,  2.95it/s]
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 21606379: <ex6_2> in cluster <dcc> Done
+
+Job <ex6_2> was submitted from host <hpclogin1> by user <s204230> in cluster <dcc> at Thu Apr 25 09:39:59 2024
+Job was executed on host(s) <n-62-31-4>, in queue <hpc>, as user <s204230> in cluster <dcc> at Thu Apr 25 09:40:00 2024
+</zhome/29/d/156177> was used as the home directory.
+</zhome/29/d/156177/data_driven_methods/project> was used as the working directory.
+Started at Thu Apr 25 09:40:00 2024
+Terminated at Thu Apr 25 09:40:38 2024
+Results reported at Thu Apr 25 09:40:38 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+### General options
+### –- specify queue --
+#BSUB -q hpc
+### -- set the job Name --
+#BSUB -J ex6_2
+### -- ask for number of cores (default: 1) --
+#BSUB -n 1
+### -- set walltime limit: hh:mm --  maximum 24 hours for GPU-queues right now
+#BSUB -W 1:00
+# request 5GB of system-memory
+#BSUB -R "rusage[mem=16GB]"
+### -- set the email address --
+# please uncomment the following line and put in your e-mail address,
+# if you want to receive e-mail notifications on a non-default address
+
+### -- Specify the output and error file. %J is the job-id --
+### -- -o and -e mean append, -oo and -eo mean overwrite --
+#BSUB -o outputs/data_generate/outs/ output%J.out
+#BSUB -e outputs/data_generate/errs/ errors%J.err
+# -- end of LSF options --
+# Initialize Python environment
+source /dtu/projects/02613_2024/conda/conda_init.sh
+conda activate 02613
+
+# Run Python script
+python generate_data.py
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   35.38 sec.
+    Max Memory :                                 57 MB
+    Average Memory :                             57.00 MB
+    Total Requested Memory :                     16384.00 MB
+    Delta Memory :                               16327.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                6
+    Run time :                                   86 sec.
+    Turnaround time :                            39 sec.
+
+The output (if any) is above this job summary.
+
