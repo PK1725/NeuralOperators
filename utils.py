@@ -219,7 +219,7 @@ def load_data(directory):
     return metadata, u_0_train, u_t_train, x_grid
 
 
-def prepare_data(u_0_train,u_t_train,device,t_max,L):
+def prepare_data(u_0_train,u_t_train,device,t_max,L,batch_size=32):
 
     # Downsample the training data
     X = torch.tensor(u_0_train, dtype=torch.float32).to(device)
@@ -231,7 +231,7 @@ def prepare_data(u_0_train,u_t_train,device,t_max,L):
     
     train_loader = torch.utils.data.DataLoader(
         train_db,
-        batch_size=1,
+        batch_size=batch_size,
         shuffle=True,
         num_workers=0,
         pin_memory=False if device == 'cuda' else True,
