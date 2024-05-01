@@ -33,9 +33,9 @@ time_res = metadata['time_res']
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 print("Device:", device)
-print("(available memory,total memory): ", torch.cuda.mem_get_info())
+if device == 'cuda': print("(available memory,total memory): ", torch.cuda.mem_get_info())
 
-train_loader,data_processor = utils.prepare_data(u_0_train,u_t_train,device,t_max,L)
+train_loader,data_processor = utils.prepare_data(u_0_train,u_t_train,device,t_max,L,batch_size=32)
 
 # generate test data
 test_resolutions = [[space_res,time_res], [25,25],[50,50],[100,100]]
@@ -44,7 +44,7 @@ test_loaders = utils.generate_test_tensor(n_simulations,test_resolutions,device,
 print("Generated test data")
 
 model = TFNO(n_modes=(16,16)
-             , hidden_channels=32, in_channels=3,projection_channels=64, factorization='tucker', rank=0.42)
+             , hidden_channels=32, in_channels=3,projection_channels=64, n_layers=5)
 model = model.to(device)
 
 n_params = count_model_params(model)

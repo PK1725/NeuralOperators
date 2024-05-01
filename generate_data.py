@@ -14,7 +14,7 @@ dt = 0.001 #0.001  # Time step size
 space_res = 80
 time_res = 50
 
-n_simulations = 100  # Number of simulations
+n_simulations = 1000  # Number of simulations
 initial_conditions = {
     'u_initial_1': utils.u_initial_1,
     'u_initial_2': utils.u_initial_2,
@@ -26,9 +26,11 @@ initial_conditions = {
     'u_initial_8': utils.u_initial_8,
 }
 
+np.random.seed(69) # for training data
+# np.random.seed(666) # for test data
 x_grid,u_t_train, u_0_train = utils.simulate_IC(n_simulations,initial_conditions,L, n, t_max, dt, nu,
                                                 plotting=False,keep_first_t=False,
-                                                space_res=space_res,time_res=time_res)
+                                                space_res=space_res,time_res=time_res,old_ic=False)
 
 # Save matrices
 save_folder = f"data/data{n_simulations}_{space_res}_{time_res}"

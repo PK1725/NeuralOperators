@@ -105,9 +105,41 @@ def burgers_equation_simulation2(u_initial, x_grid, dt, t_max, nu,space_res,time
         t_points = t_points[1:]
     return x_grid,t_points,u_initial,u_solution
 
+ #Define IC from fourier 
+def u_initial_const(n_xpoints):
+    return np.ones(n_xpoints)
+
+def u_initial_cos(n_xpoints,n_freq):
+    x = np.linspace(0, 2*np.pi, n_xpoints)
+    return np.cos(n_freq * x)
+
+def u_initial_sin(n_xpoints,n_freq):
+    x = np.linspace(0, 2*np.pi, n_xpoints)
+    return np.sin(n_freq * x)
+
+def gen_u_initial(n_xpoints,n_freq=4):
+    """
+    calculates u_initial = a0 + sum( a[n] cos nx + b[n] sin nx )
+    """
+    # generate IC
+    a_0 = np.round((np.random.random() - 0.5) * 2, 2)
+    u_initial = np.zeros(n_xpoints,) + a_0
+
+    # Generate a and b arrays in one step
+    a = np.round((np.random.random((n_freq,)) - 0.5) * 2, 2)
+    b = np.round((np.random.random((n_freq,)) - 0.5) * 2, 2)
+
+    # Calculate u_initial_cos and u_initial_sin 
+    u_initial_cos_array = np.array([u_initial_cos(n_freq=i+1, n_xpoints=n_xpoints) for i in range(n_freq)]) #cos nx
+    u_initial_sin_array = np.array([u_initial_sin(n_freq=i+1, n_xpoints=n_xpoints) for i in range(n_freq)]) #sin nx
+
+    # Perform vectorized operations to calculate u_initial = a0 + sum( a[n] cos nx + b[n] sin nx )
+    u_initial += np.dot(a, u_initial_cos_array) + np.dot(b, u_initial_sin_array)
+
+    return u_initial
 
 def simulate_IC(n_simulations,initial_conditions,L, n, t_max, dt, nu,
-                plotting=False,time_res=None,space_res=None,keep_first_t=False):
+                plotting=False,time_res=None,space_res=None,keep_first_t=False,old_ic = False):
     if space_res is None:
         space_res = n
     if time_res is None:
@@ -126,10 +158,14 @@ def simulate_IC(n_simulations,initial_conditions,L, n, t_max, dt, nu,
     while i < n_simulations:
         try:
             x_grid = np.linspace(0, L, n)  # Spatial grid
-            w = np.round((np.random.random(8)) , 2)
-            u_initial = np.zeros_like(x_grid)
-            for idx, (name, init_func) in enumerate(initial_conditions.items()):
-                u_initial += init_func(L, n) * w[idx]
+            
+            if old_ic:
+                w = np.round((np.random.random(8)) , 2)
+                u_initial = np.zeros_like(x_grid)
+                for idx, (name, init_func) in enumerate(initial_conditions.items()):
+                    u_initial += init_func(L, n) * w[idx]
+            else:
+                u_initial = gen_u_initial(n,n_freq=4)
 
             x_grid,t_points,u_initial,u_solution = burgers_equation_simulation2(u_initial, x_grid, dt, t_max, nu,space_res,time_res,keep_first_t=False)
 
