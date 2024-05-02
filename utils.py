@@ -330,7 +330,7 @@ def prepare_data(u_0_train,u_t_train,device,t_max,L,batch_size=32):
     data_processor = data_processor.to(device)
     return train_loader,data_processor
 
-def generate_test_tensor(n_simulations,test_resolutions,device,L,n,t_max,dt,nu,old_ic=False):
+def generate_test_tensor(n_simulations,test_resolutions,device,L,n,t_max,dt,nu,old_ic=False,solver='Fourier'):
     # Test data
     # resolutions space_res x time_res
     initial_conditions = {
@@ -349,7 +349,7 @@ def generate_test_tensor(n_simulations,test_resolutions,device,L,n,t_max,dt,nu,o
         np.random.seed(666)
         x_grid_test,u_t_test, u_0_test = simulate_IC(n_simulations,initial_conditions,L, n, t_max, dt, nu,
                                                     plotting=False,keep_first_t=False,
-                                                    space_res=res[0],time_res=res[1],old_ic=old_ic)
+                                                    space_res=res[0],time_res=res[1],old_ic=old_ic,solver=solver)
         X_test = torch.tensor(u_0_test, dtype=torch.float32).to(device)
         y_test = torch.tensor(u_t_test, dtype=torch.float32).to(device)
         X_test = X_test.unsqueeze(1)
