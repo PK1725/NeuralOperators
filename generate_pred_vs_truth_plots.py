@@ -97,12 +97,12 @@ for i, (resolution, loader) in enumerate(test_loaders.items()):
     u_initial = u_0[0][0]
 
     # Plot the data in the corresponding subplot
-    axs[0, i].imshow(u_t.squeeze(), aspect='auto',extent=[0,L,t_max,0])
+    axs[0, i].imshow(u_t.squeeze(), aspect='auto',extent=[0,L,t_max,0], cmap='jet')
 
     axs[0, i].set_xlabel('x')
     axs[0, i].set_ylabel('t')
     data_processor.preprocess(sample, batched=False)['x']
-    axs[1, i].imshow(model(sample['x'].unsqueeze(0)).squeeze().detach().cpu().numpy(), aspect='auto',extent=[0,L,t_max,0])
+    axs[1, i].imshow(model(sample['x'].unsqueeze(0)).squeeze().detach().cpu().numpy(), aspect='auto',extent=[0,L,t_max,0], cmap='jet')
     axs[1, i].set_title(f'Prediction')
     axs[1, i].set_xlabel('x')
     axs[1, i].set_ylabel('t')

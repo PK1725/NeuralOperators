@@ -12,6 +12,7 @@ from neuralop.datasets.tensor_dataset import TensorDataset
 from neuralop.datasets.output_encoder import UnitGaussianNormalizer
 from neuralop.datasets.transforms import PositionalEmbedding2D
 from neuralop.datasets.data_transforms import DefaultDataProcessor
+from scipy.integrate import solve_ivp
 
 # Define the initial conditions
 
@@ -89,21 +90,50 @@ def burgers_equation_simulation(u_initial, x_grid, dt, t_max, nu):
     
     return u_solution, t_points
 
+# Define the KdV equation
+def rhsBurgers(t,u,kappa,nu): 
+    uhat = np.fft.fft(u)
+    d_uhat = (1j)*kappa*uhat
+    dd_uhat = -np.power(kappa,2)*uhat
+    d_u = np.fft.ifft(d_uhat)
+    dd_u = np.fft.ifft(dd_uhat)
+    du_dt = -u * d_u + nu*dd_u
+    return du_dt.real
 
-def burgers_equation_simulation2(u_initial, x_grid, dt, t_max, nu,space_res,time_res,keep_first_t=False):
-    u_solution, t_points = burgers_equation_simulation(u_initial, x_grid, dt, t_max, nu)
-    time_res_offset = int(int(t_max/dt)/time_res)
-    space_res_offset = int(len(x_grid)/space_res)
+def Fourier_burger_equation_simulation(u0,x_grid,T,time_res,nu):
+    N = len(x_grid)
+    L = x_grid[-1] - x_grid[0]
+    dx = L / N
+    kappa = 2*np.pi*np.fft.fftfreq(N, d=dx)
+    # Solve Burger's equation using odeint
+    t = np.linspace(0,T,time_res)
 
-    #downsample
-    t_points = t_points[::time_res_offset]
-    u_initial = u_initial[::space_res_offset]
-    u_solution = u_solution[::space_res_offset,::time_res_offset]
-    x_grid = x_grid[::space_res_offset]
-    if not keep_first_t:
-        u_solution = u_solution[:,1:]
-        t_points = t_points[1:]
-    return x_grid,t_points,u_initial,u_solution
+    sol =  solve_ivp(rhsBurgers, [t[0], t[-1]], u0, t_eval=t, args=(kappa,nu))
+    u = sol.y
+    return u,t
+
+def burgers_equation_simulation2(u_initial, x_grid, dt, t_max, nu,space_res,time_res,keep_first_t=False,solver='FDM'):
+    if solver == 'FDM':
+        u_solution, t_points = burgers_equation_simulation(u_initial, x_grid, dt, t_max, nu)
+        time_res_offset = int(int(t_max/dt)/time_res)
+        space_res_offset = int(len(x_grid)/space_res)
+
+        #downsample
+        t_points = t_points[::time_res_offset]
+        u_initial = u_initial[::space_res_offset]
+        u_solution = u_solution[::space_res_offset,::time_res_offset]
+        x_grid = x_grid[::space_res_offset]
+        if not keep_first_t:
+            u_solution = u_solution[:,1:]
+            t_points = t_points[1:]
+        return x_grid,t_points,u_initial,u_solution
+    else:
+        u_solution, t_points = Fourier_burger_equation_simulation(u_initial,x_grid,t_max,time_res,nu)
+        space_res_offset = int(len(x_grid)/space_res)
+        x_grid = x_grid[::space_res_offset]
+        u_initial = u_initial[::space_res_offset]
+        u_solution = u_solution[::space_res_offset]
+        return x_grid,t_points,u_initial,u_solution
 
  #Define IC from fourier 
 def u_initial_const(n_xpoints):
@@ -139,7 +169,11 @@ def gen_u_initial(n_xpoints,n_freq=4):
     return u_initial
 
 def simulate_IC(n_simulations,initial_conditions,L, n, t_max, dt, nu,
-                plotting=False,time_res=None,space_res=None,keep_first_t=False,old_ic = False):
+                plotting=False,time_res=None,space_res=None,keep_first_t=False,old_ic = False,solver='FDM'):
+    """
+    If solver='FDM' uses finite difference method, else uses Fourier transform
+    If solver is the  Fourier transform, then N should be 2^11 or above
+    """
     if space_res is None:
         space_res = n
     if time_res is None:
@@ -150,7 +184,7 @@ def simulate_IC(n_simulations,initial_conditions,L, n, t_max, dt, nu,
     progress_bar = tqdm(total=n_simulations, desc="Simulations")
     x_grid = np.linspace(0, L, n)  # Spatial grid
     # Do it once to get the shapes (lazy way)
-    x_grid,t_points,u_initial,u_solution = burgers_equation_simulation2(u_initial_1(L,n), x_grid, dt, t_max, nu,space_res,time_res,keep_first_t=False)
+    x_grid,t_points,u_initial,u_solution = burgers_equation_simulation2(u_initial_1(L,n), x_grid, dt, t_max, nu,space_res,time_res,keep_first_t=False,solver=solver)
     
     u_t_train = np.zeros((n_simulations,u_solution.shape[1],u_solution.shape[0]))
     u_0_train = np.zeros((n_simulations,u_solution.shape[1],u_solution.shape[0]))
@@ -167,7 +201,7 @@ def simulate_IC(n_simulations,initial_conditions,L, n, t_max, dt, nu,
             else:
                 u_initial = gen_u_initial(n,n_freq=4)
 
-            x_grid,t_points,u_initial,u_solution = burgers_equation_simulation2(u_initial, x_grid, dt, t_max, nu,space_res,time_res,keep_first_t=False)
+            x_grid,t_points,u_initial,u_solution = burgers_equation_simulation2(u_initial, x_grid, dt, t_max, nu,space_res,time_res,keep_first_t=False,solver=solver)
 
             if np.isnan(u_solution).any(): raise ValueError('NaN values in array')
             
