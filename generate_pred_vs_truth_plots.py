@@ -23,7 +23,7 @@ initial_conditions = {
 }
 
 # Specify the directory
-directory = 'models/old_IC_1000_80_50/'
+directory = 'models/new_IC_1000_80_50/'
 
 # Load the model
 model_path = os.path.join(directory, 'model_full.pth')
@@ -53,9 +53,10 @@ test_resolutions = [[space_res,time_res], [25,25],[50,50],[100,100]]
 n_simulations = 1 # Number of simulations per resolution
 test_loaders = {}
 for res in test_resolutions:
+    np.random.seed(666)
     x_grid_test,u_t_test, u_0_test = utils.simulate_IC(n_simulations,initial_conditions,L, n, t_max, dt, nu,
                                                 plotting=False,keep_first_t=False,
-                                                space_res=res[0],time_res=res[1])
+                                                space_res=res[0],time_res=res[1],old_ic=False)
     X_test = torch.tensor(u_0_test, dtype=torch.float32).to(device)
     y_test = torch.tensor(u_t_test, dtype=torch.float32).to(device)
     X_test = X_test.unsqueeze(1)
@@ -113,7 +114,7 @@ for i, (resolution, loader) in enumerate(test_loaders.items()):
         axs[0, i].set_title(f'Training resolution: {resolution}, \n L2 error {loss} \n\n Ground Truth')
     else:
         axs[0, i].set_title(f'Resolution: {resolution}, \n L2 error {loss} \n\n Ground Truth')
-    im = axs[2, i].imshow(diff, aspect='auto',extent=[0,L,t_max,0])
+    im = axs[2, i].imshow(diff, aspect='auto',extent=[0,L,t_max,0],cmap='hot')
     axs[2, i].set_title(f'Abs difference')
     axs[2, i].set_xlabel('x')
     axs[2, i].set_ylabel('t')
