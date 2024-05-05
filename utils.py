@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 import os
 import torch,sys
+from torch import nn
 from neuralop.models import TFNO
 from neuralop import Trainer
 import neuralop.training.callbacks as callbacks
@@ -13,6 +14,9 @@ from neuralop.datasets.output_encoder import UnitGaussianNormalizer
 from neuralop.datasets.transforms import PositionalEmbedding2D
 from neuralop.datasets.data_transforms import DefaultDataProcessor
 from scipy.integrate import solve_ivp
+from pathlib import Path
+import sys
+from typing import List, Union, Literal
 
 # Define the initial conditions
 
@@ -368,3 +372,90 @@ def generate_test_tensor(n_simulations,test_resolutions,device,L,n,t_max,dt,nu,o
         
         test_loaders[f'{res[0]}x{res[1]}'] = test_loader
     return test_loaders
+
+
+
+def save_training_state(save_dir: Union[str, Path], save_name: str,
+                        model: nn.Module,
+                        optimizer: nn.Module = None,
+                        scheduler: nn.Module = None,
+                        regularizer: nn.Module = None) -> None:
+    """save_training_state returns model and optional other training modules
+    saved from prior training for downstream use
+
+    Parameters
+    ----------
+    save_dir : Union[str, Path]
+        directory from which to load training state (model, optional optimizer, scheduler, regularizer)
+    save_name : str
+        name of model to load
+    """
+    training_state = {}
+
+    if isinstance(save_dir, str):
+        save_dir = Path(save_dir)
+    
+    training_state['model'] = model.save_checkpoint(save_dir, save_name)
+    
+    # load optimizer if state exists
+    if optimizer is not None:
+        optimizer_pth = save_dir / "optimizer.pt"
+        torch.save(optimizer.state_dict(), optimizer_pth)
+    
+    if scheduler is not None:
+        scheduler_pth = save_dir / "scheduler.pt"
+        torch.save(scheduler.state_dict(), scheduler_pth)
+    
+    if regularizer is not None:
+        regularizer_pth = save_dir / "regularizer.pt"
+        torch.save(regularizer.state_dict(), regularizer_pth)
+    
+    print(f"Successfully saved training state to {save_dir}")
+    
+class CheckpointCallbackAdjusted(callbacks.CheckpointCallback):
+  def __init__(
+        self,
+        save_dir: Union[Path, str],
+        save_best: str = None,
+        save_interval: int = 1,
+        save_optimizer: bool = False,
+        save_scheduler: bool = False,
+        save_regularizer: bool = False,
+        resume_from_dir: Union[Path, str] = None,
+    ):
+    super().__init__(save_dir,save_best,save_interval,save_optimizer,save_scheduler,save_regularizer,resume_from_dir)
+  def on_epoch_end(self, *args, **kwargs):
+    """
+    Save state to dir if all conditions are met
+    """
+    if self.save_best:
+        log_prefix = self.state_dict["log_prefix"]
+        if (
+            self.state_dict["errors"][f"{log_prefix}_{self.save_best}"]
+            < self.best_metric_value
+        ):
+            metric_cond = True
+        else:
+            metric_cond = False
+    else:
+        metric_cond = True
+
+    # Save states to save_dir
+    if self.state_dict["epoch"] % self.save_interval == 0 and metric_cond:
+        # save model or best_model.pt no matter what
+        if self.save_best:
+            model_name = "best_model"
+        else:
+            model_name = "model"
+
+        save_training_state(
+            self.save_dir,
+            model_name,
+            model=self.state_dict["model"],
+            optimizer=self.state_dict.get("optimizer", None),
+            regularizer=self.state_dict.get("regularizer", None),
+            scheduler=self.state_dict.get("scheduler", None),
+        )
+
+        if self.state_dict["verbose"]:
+            print(f"Saved training state to {self.save_dir}")
