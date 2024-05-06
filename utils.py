@@ -409,9 +409,7 @@ def save_training_state(save_dir: Union[str, Path], save_name: str,
     if regularizer is not None:
         regularizer_pth = save_dir / "regularizer.pt"
         torch.save(regularizer.state_dict(), regularizer_pth)
-    
-    print(f"Successfully saved training state to {save_dir}")
-    
+        
 class CheckpointCallbackAdjusted(callbacks.CheckpointCallback):
   def __init__(
         self,
@@ -435,6 +433,7 @@ class CheckpointCallbackAdjusted(callbacks.CheckpointCallback):
             < self.best_metric_value
         ):
             metric_cond = True
+            self.best_metric_value = self.state_dict["errors"][f"{log_prefix}_{self.save_best}"]
         else:
             metric_cond = False
     else:
@@ -453,7 +452,7 @@ class CheckpointCallbackAdjusted(callbacks.CheckpointCallback):
             model_name,
             model=self.state_dict["model"],
             optimizer=self.state_dict.get("optimizer", None),
-            regularizer=self.state_dict.get("regularizer", None),
+            regularizer=None,
             scheduler=self.state_dict.get("scheduler", None),
         )
 

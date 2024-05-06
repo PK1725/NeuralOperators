@@ -41,9 +41,9 @@ for res in test_resolutions:
     # Save matrices
     save_folder = data_path + f"/test_data/data{n_simulations}_{res[0]}_{res[1]}"
     os.makedirs(save_folder, exist_ok=True)
-    np.save(os.path.join(save_folder, "x_grid.npy"), x_grid)
-    np.save(os.path.join(save_folder, "u_t_train.npy"), u_t_train)
-    np.save(os.path.join(save_folder, "u_0_train.npy"), u_0_train)
+    np.save(os.path.join(save_folder, "x_grid.npy"), x_grid_test)
+    np.save(os.path.join(save_folder, "u_t_train.npy"), u_t_test)
+    np.save(os.path.join(save_folder, "u_0_train.npy"), u_0_test)
     # Save metadata
     metadata = {
         'L': L,
